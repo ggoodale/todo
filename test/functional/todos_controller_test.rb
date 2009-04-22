@@ -1,6 +1,23 @@
 require 'test_helper'
 
 class TodosControllerTest < ActionController::TestCase
+
+  should "increment the number of todos by one when creating a new Todo"
+
+  context "when rendering the front page" do
+    should "display the number of overdue Todos"
+    should "display a form allowing the creation of a new todo"
+    should "display a list of all Todos"
+    should "render a checkbox allowing each todo to be marked complete"
+  end
+  
+  context "when creating a new Todo" do
+    should "redirect to the list of todos after a todo is marked complete"
+    should "display an error if the user did not specify a body"
+  end
+  
+  # Original Test::Unit tests below
+  
   test "should get index" do
     get :index
     assert_response :success
@@ -14,7 +31,7 @@ class TodosControllerTest < ActionController::TestCase
 
   test "should create todo" do
     assert_difference('Todo.count') do
-      post :create, :todo => { }
+      post :create, :todo => {:body => "Buy Milk"}
     end
 
     assert_redirected_to todo_path(assigns(:todo))
